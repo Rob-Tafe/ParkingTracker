@@ -153,6 +153,7 @@
             // 
             this.TbFeedback.Location = new System.Drawing.Point(20, 373);
             this.TbFeedback.Name = "TbFeedback";
+            this.TbFeedback.ReadOnly = true;
             this.TbFeedback.Size = new System.Drawing.Size(460, 20);
             this.TbFeedback.TabIndex = 12;
             // 
