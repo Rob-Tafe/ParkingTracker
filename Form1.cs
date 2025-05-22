@@ -43,7 +43,8 @@ namespace ParkingTracker
                     {
                         using (myStream)
                         {
-                            LbMain.Text = myStream.ToString();
+                            DisplayLbMain(openTxtFile.FileName);
+                            myStream.Close();
                         }
                     }
                 }
@@ -52,8 +53,31 @@ namespace ParkingTracker
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
-
         } // End of BtnOpen method
+
+
+
+        private void DisplayLbMain(string filePath)
+        {
+            // Clear all displayed data from LbMain
+            LbMain.Items.Clear();
+
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string lineContent = string.IsNullOrWhiteSpace(lines[i]) ? "-" : lines[i];
+                    LbMain.Items.Add(lineContent);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The file was not found.");
+            }
+
+        }
 
 
 
