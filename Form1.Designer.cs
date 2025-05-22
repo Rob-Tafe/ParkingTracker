@@ -1,6 +1,6 @@
 ﻿namespace ParkingTracker
 {
-    partial class Form1
+    partial class ParkingTracker
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             this.TbFeedback = new System.Windows.Forms.TextBox();
             this.LabelTagged = new System.Windows.Forms.Label();
             this.LabelMain = new System.Windows.Forms.Label();
+            this.LabelFeedback = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnOpen
@@ -175,11 +176,21 @@
             this.LabelMain.TabIndex = 14;
             this.LabelMain.Text = "Main";
             // 
-            // Form1
+            // LabelFeedback
+            // 
+            this.LabelFeedback.AutoSize = true;
+            this.LabelFeedback.Location = new System.Drawing.Point(20, 358);
+            this.LabelFeedback.Name = "LabelFeedback";
+            this.LabelFeedback.Size = new System.Drawing.Size(55, 13);
+            this.LabelFeedback.TabIndex = 15;
+            this.LabelFeedback.Text = "Feedback";
+            // 
+            // ParkingTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 411);
+            this.Controls.Add(this.LabelFeedback);
             this.Controls.Add(this.LabelMain);
             this.Controls.Add(this.LabelTagged);
             this.Controls.Add(this.TbFeedback);
@@ -195,8 +206,8 @@
             this.Controls.Add(this.TbInput);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnOpen);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ParkingTracker";
+            this.Text = "Parking Tracker";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +230,7 @@
         private System.Windows.Forms.TextBox TbFeedback;
         private System.Windows.Forms.Label LabelTagged;
         private System.Windows.Forms.Label LabelMain;
+        private System.Windows.Forms.Label LabelFeedback;
     }
 }
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ParkingTracker
 {
-    public partial class Form1 : Form
+    public partial class ParkingTracker : Form
     {
-        public Form1()
+        public ParkingTracker()
         {
             InitializeComponent();
         }
