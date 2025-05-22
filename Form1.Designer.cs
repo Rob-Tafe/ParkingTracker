@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.TbInput = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
             this.LabelTagged = new System.Windows.Forms.Label();
             this.LabelMain = new System.Windows.Forms.Label();
             this.LabelFeedback = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // BtnOpen
@@ -54,6 +56,7 @@
             this.BtnOpen.TabIndex = 0;
             this.BtnOpen.Text = "Open";
             this.BtnOpen.UseVisualStyleBackColor = true;
+            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
             // BtnSave
             // 
@@ -148,6 +151,8 @@
             this.BtnTag.Size = new System.Drawing.Size(60, 35);
             this.BtnTag.TabIndex = 11;
             this.BtnTag.Text = "Tag";
+            this.toolTip1.SetToolTip(this.BtnTag, "Select a Licence number from the\r\n\'Main\' list and click the \"Tag\" button\r\nto add " +
+        "it to the \"Tagged\" list.\r\n");
             this.BtnTag.UseVisualStyleBackColor = true;
             // 
             // TbFeedback
@@ -231,6 +236,7 @@
         private System.Windows.Forms.Label LabelTagged;
         private System.Windows.Forms.Label LabelMain;
         private System.Windows.Forms.Label LabelFeedback;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
