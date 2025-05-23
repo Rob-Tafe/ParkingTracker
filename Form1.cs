@@ -39,15 +39,8 @@ namespace ParkingTracker
             {
                 try
                 {
-                    if ((myStream = openTxtFile.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
                             DisplayLbMain(openTxtFile.FileName);
-                            myStream.Close();
-                        }
                     }
-                }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
