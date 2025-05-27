@@ -29,7 +29,6 @@ namespace ParkingTracker
         // Start of BtnOpen method
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-            Stream myStream = null;
             OpenFileDialog openTxtFile = new OpenFileDialog();
             openTxtFile.Title = "Open Text file";
             openTxtFile.Filter = "TXT files|*.txt";
@@ -52,8 +51,6 @@ namespace ParkingTracker
 
         private void DisplayLbMain(string filePath)
         {
-            // Clear all displayed data from LbMain
-            LbMain.Items.Clear();
 
             if (File.Exists(filePath))
             {
