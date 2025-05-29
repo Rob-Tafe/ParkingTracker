@@ -194,7 +194,7 @@ namespace ParkingTracker
             }
             else if ((TbInput == null) || (TbInput.TextLength != 7))
             {
-                TbFeedback.Text = "Invalid input format, please input a 7 digit Licence plate number to search for.";
+                TbFeedback.Text = "Invalid input, please input a Licence plate number in the format: #ABC-###.";
                 TbInput.Clear();
                 return;
             }
