@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -102,9 +103,11 @@ namespace ParkingTracker
             // from the text file, and/or was added via user input.
             if (mainLinesGlobal != null)
             {
+                mainLinesGlobal.Sort();
+
                 foreach (string line in mainLinesGlobal)
                 {
-                    LbMain.Items.Add(string.IsNullOrWhiteSpace(line) ? "-" : line);
+                    LbMain.Items.Add($"{mainLinesGlobal.IndexOf(line)}.    {(string.IsNullOrWhiteSpace(line) ? "-" : line)}");
                 }
             }
         } // End of DisplayLbMain method
@@ -165,6 +168,67 @@ namespace ParkingTracker
             }
 
         } // End of BtnAdd method
+
+
+
+        // Binary search method. This method is responsible for performing a binary search of the LbMain listbox,
+        // in order to find the licence plat that the user has inputted to the TbInput textbox.
+        private void BtnBinary_Click(object sender, EventArgs e)
+        {
+            DisplayLbMain();
+
+            // This first if statement ensures everythng is in place for the binary search to function without throwing
+            // an error immediately
+            if (mainLinesGlobal == null)
+            {
+                    TbFeedback.Text = "Please load a file before performing a search.";
+                    TbInput.Clear();
+                    return;
+            }
+            else if ((TbInput == null) || (TbInput.TextLength != 7))
+            {
+                TbFeedback.Text = "Invalid input format, please input a 7 digit Licence plate number to search for.";
+                TbInput.Clear();
+                return;
+            }
+            
+            // Here we declare the variables that will allow the binary search to function properly
+            int lowBound = 0;
+            int highBound = mainLinesGlobal.Count - 1;
+            string target = TbInput.Text;
+
+            // This is the while loop that makes up the core function of the binary search method
+            while ((lowBound <= highBound))
+            {
+                int mid = (lowBound + highBound) / 2;
+
+                int compareStrings = String.Compare(mainLinesGlobal[mid], target, StringComparison.OrdinalIgnoreCase);
+
+
+                if (compareStrings == 0)
+                {
+                    // Target found
+                    TbFeedback.Text = $"{target} found at index {mid}";
+                    LbMain.SetSelected(mid, true);
+                    TbInput.Clear();
+                    return;
+                }
+                else if (compareStrings > 0)
+                {
+                    highBound = mid - 1;
+                }
+                else
+                {
+                    lowBound = mid + 1;
+                }
+
+                TbInput.Clear();
+            }
+
+            TbFeedback.Text = "Licence plate not found.";
+                
+
+        } // End of binary search method
 
 
 

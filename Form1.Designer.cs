@@ -92,6 +92,7 @@
             this.BtnBinary.TabIndex = 4;
             this.BtnBinary.Text = "Binary Search";
             this.BtnBinary.UseVisualStyleBackColor = true;
+            this.BtnBinary.Click += new System.EventHandler(this.BtnBinary_Click);
             // 
             // BtnLinear
             // 
