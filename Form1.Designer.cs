@@ -46,6 +46,7 @@
             this.LabelMain = new System.Windows.Forms.Label();
             this.LabelFeedback = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.LabelInput = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnOpen
@@ -77,7 +78,7 @@
             // 
             // BtnReset
             // 
-            this.BtnReset.Location = new System.Drawing.Point(420, 20);
+            this.BtnReset.Location = new System.Drawing.Point(220, 20);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(60, 35);
             this.BtnReset.TabIndex = 3;
@@ -193,11 +194,21 @@
             this.LabelFeedback.TabIndex = 15;
             this.LabelFeedback.Text = "Feedback";
             // 
+            // LabelInput
+            // 
+            this.LabelInput.AutoSize = true;
+            this.LabelInput.Location = new System.Drawing.Point(20, 70);
+            this.LabelInput.Name = "LabelInput";
+            this.LabelInput.Size = new System.Drawing.Size(31, 13);
+            this.LabelInput.TabIndex = 16;
+            this.LabelInput.Text = "Input";
+            // 
             // ParkingTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 411);
+            this.Controls.Add(this.LabelInput);
             this.Controls.Add(this.LabelFeedback);
             this.Controls.Add(this.LabelMain);
             this.Controls.Add(this.LabelTagged);
@@ -240,6 +251,7 @@
         private System.Windows.Forms.Label LabelMain;
         private System.Windows.Forms.Label LabelFeedback;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label LabelInput;
     }
 }
 

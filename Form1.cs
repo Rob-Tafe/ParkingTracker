@@ -9,6 +9,10 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.SqlServer.Server;
+
+// This allows us to use regex to ensure the correct format of the licence plates
+using System.Text.RegularExpressions;
 
 namespace ParkingTracker
 {
@@ -101,7 +105,7 @@ namespace ParkingTracker
 
             // Here we add the content of mainLinesGlobal list that stores all of our data that was loaded
             // from the text file, and/or was added via user input.
-            if (mainLinesGlobal != null)
+            if (mainLinesGlobal != null && mainLinesGlobal.Any(line => Regex.IsMatch(line, @"^\d[A-Z]{3}-\d{3}$")))
             {
                 mainLinesGlobal.Sort();
 
