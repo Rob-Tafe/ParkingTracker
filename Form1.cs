@@ -139,7 +139,9 @@ namespace ParkingTracker
         {
             TbFeedback.Clear();
 
-            if ((TbInput != null) && (TbInput.TextLength == 7))
+            string addLpFromInput = TbInput.Text;
+
+            if ((TbInput != null) && (Regex.IsMatch(addLpFromInput, @"^\d[A-Z]{3}-\d{3}$")))
             {
                 string varTbInputAdd = TbInput.Text;
                 TbFeedback.Text = $"varTbInputAdd = {varTbInputAdd}";
@@ -155,6 +157,7 @@ namespace ParkingTracker
                     {
                         mainLinesGlobal.Add(varTbInputAdd);
                         TbInput.Clear();
+                        LbMain.Focus();
                         DisplayLbMain();
                     }
                     else
@@ -167,7 +170,7 @@ namespace ParkingTracker
             }
             else
             {
-                TbFeedback.Text = "Invalid input format, please input a 7 digit Licence plate number.";
+                TbFeedback.Text = "Invalid input, please input a Licence plate number in the format: #ABC-###.";
                 TbInput.Clear();
             }
 
@@ -230,7 +233,7 @@ namespace ParkingTracker
             }
 
             TbFeedback.Text = "Licence plate not found.";
-                
+
 
         } // End of binary search method
 
