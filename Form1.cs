@@ -166,7 +166,6 @@ namespace ParkingTracker
                         TbInput.Clear();
                     }
                 }
-
             }
             else
             {
@@ -233,7 +232,6 @@ namespace ParkingTracker
             }
 
             TbFeedback.Text = "Licence plate not found.";
-
 
         } // End of binary search method
 
