@@ -30,11 +30,11 @@ namespace ParkingTracker
         }
 
 
+
         // This is the list variable that will hold the data for the LbMain listbox
         // to display, as well as allow us to altar without having to commit to writing
         // to a text file with every button press.
         List<string> mainLinesGlobal;
-
 
         // This is the list variable that will hold the data for the Lbtagged list box to
         // display.
@@ -190,12 +190,6 @@ namespace ParkingTracker
                     TbFeedback.Text = "Please load a file before performing a search.";
                     TbInput.Clear();
                     return;
-            }
-            else if ((TbInput == null) || (TbInput.TextLength != 7))
-            {
-                TbFeedback.Text = "Invalid input, please input a Licence plate number in the format: #ABC-###.";
-                TbInput.Clear();
-                return;
             }
             
             // Here we declare the variables that will allow the binary search to function properly
