@@ -43,6 +43,9 @@ namespace ParkingTracker
         string nameOfSelectedTxtFile;
 
 
+        bool globalIfcFault = false;
+
+
 
         // Start of BtnOpen method. This method is responsible for enabling the user to
         // open a text file that stored dada that can be used or modified by the other methods.
@@ -68,6 +71,7 @@ namespace ParkingTracker
                     TbFeedback.Text = "Error: Could not read file from disk.";
                 }
             }
+
         } // End of BtnOpen method
 
 
@@ -97,7 +101,7 @@ namespace ParkingTracker
 
         // Start of DisplayLbMain method. This method is responsible for displaying the data from the
         // mainLinesGlobal list variable, where most of our data handing will take place
-        private void DisplayLbMain()
+        public void DisplayLbMain()
         {
             TbFeedback.Clear();
             // Here we clear LbMain to keep things readable & user friendly
@@ -111,9 +115,10 @@ namespace ParkingTracker
 
                 foreach (string line in mainLinesGlobal)
                 {
-                    LbMain.Items.Add($"{mainLinesGlobal.IndexOf(line)}.    {(string.IsNullOrWhiteSpace(line) ? "-" : line)}");
+                    LbMain.Items.Add($"{mainLinesGlobal.IndexOf(line)}.      {(string.IsNullOrWhiteSpace(line) ? "-" : line)}");
                 }
             }
+
         } // End of DisplayLbMain method
 
 
@@ -179,19 +184,21 @@ namespace ParkingTracker
 
         // Binary search method. This method is responsible for performing a binary search of the LbMain listbox,
         // in order to find the licence plat that the user has inputted to the TbInput textbox.
-        private void BtnBinary_Click(object sender, EventArgs e)
+        public void BtnBinary_Click(object sender, EventArgs e)
         {
             DisplayLbMain();
 
-            // This first if statement ensures everythng is in place for the binary search to function without throwing
-            // an error immediately
-            if (mainLinesGlobal == null)
+            InputFormatCheck();
+
+            // This if statement allows the Binary search method to stop itself if the InputFormatCheck method
+            // returns a formatting error when called. It then resets the global variable that controls the 
+            // fault detection so that it can be resued.
+            if (globalIfcFault == true)
             {
-                    TbFeedback.Text = "Please load a file before performing a search.";
-                    TbInput.Clear();
-                    return;
+                globalIfcFault = false;
+                return;
             }
-            
+
             // Here we declare the variables that will allow the binary search to function properly
             int lowBound = 0;
             int highBound = mainLinesGlobal.Count - 1;
@@ -228,6 +235,46 @@ namespace ParkingTracker
             TbFeedback.Text = "Licence plate not found.";
 
         } // End of binary search method
+
+
+
+        // Start of the InputFormatCheck method.This method is responsible for checking if the input value in the
+        // TbInput textbox meets the format requirements of the program, and returns errors for various instances of
+        // format non-complaince.
+        public void InputFormatCheck()
+        {
+            string textCheck = TbInput.Text;
+
+            // This first if statement ensures everythng is in place for the binary search to function without throwing
+            // an error immediately
+            if (mainLinesGlobal == null)
+            {
+                TbFeedback.Text = "Please load a file before performing a search.";
+                TbInput.Clear();
+                globalIfcFault = true;
+                return;
+            }
+            else 
+            if ((TbInput == null) || (!(Regex.IsMatch(textCheck, @"^\d[A-Z]{3}-\d{3}$"))))
+            {
+                TbFeedback.Text = "Invalid input, please input a Licence plate number in the format: #ABC-###.";
+                TbInput.Clear();
+                globalIfcFault = true;
+                return;
+            }
+
+        } // End of InputFormatCheck method
+
+
+
+        // Linear search method. This method will perform a linear search for the licence plate entered into
+        // the TbInput textbox
+        private void BtnLinear_Click(object sender, EventArgs e)
+        {
+            DisplayLbMain();
+
+
+        } // End of Linear search method
 
 
 

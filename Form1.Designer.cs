@@ -103,6 +103,7 @@
             this.BtnLinear.TabIndex = 5;
             this.BtnLinear.Text = "Linear Search";
             this.BtnLinear.UseVisualStyleBackColor = true;
+            this.BtnLinear.Click += new System.EventHandler(this.BtnLinear_Click);
             // 
             // BtnAdd
             // 
