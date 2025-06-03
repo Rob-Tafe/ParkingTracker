@@ -114,7 +114,7 @@ namespace ParkingTracker
 
                 foreach (string line in mainLinesGlobal)
                 {
-                    LbMain.Items.Add($"{mainLinesGlobal.IndexOf(line)}.      {(string.IsNullOrWhiteSpace(line) ? "-" : line)}");
+                    LbMain.Items.Add($"{line}");
                 }
             }
 
@@ -143,25 +143,34 @@ namespace ParkingTracker
         {
             TbFeedback.Clear();
 
-            string addLpFromInput = TbInput.Text;
+            InputFormatCheck();
 
-            if ((TbInput != null) && (Regex.IsMatch(addLpFromInput, @"^\d[A-Z]{3}-\d{3}$")))
+            // This if statement allows the Linear search method to stop itself if the InputFormatCheck method
+            // returns a formatting error when called. It then resets the global variable that controls the 
+            // fault detection so that it can be resued.
+            if (globalIfcFault == true)
             {
-                string varTbInputAdd = TbInput.Text;
-                TbFeedback.Text = $"varTbInputAdd = {varTbInputAdd}";
+                globalIfcFault = false;
+                return;
+            }
 
-                    if (!mainLinesGlobal.Contains(varTbInputAdd))
-                    {
-                        mainLinesGlobal.Add(varTbInputAdd);
-                        TbInput.Clear();
-                        LbMain.Focus();
-                        DisplayLbMain();
-                    }
-                    else
-                    {
-                        TbFeedback.Text = "Duplicate entry. Licence plate already entered.";
-                        TbInput.Clear();
-                    }
+            string varTbInputAdd = TbInput.Text;
+            TbFeedback.Text = $"varTbInputAdd = {varTbInputAdd}";
+
+            if (!mainLinesGlobal.Contains(varTbInputAdd))
+            {
+                mainLinesGlobal.Add(varTbInputAdd);
+                TbInput.Clear();
+                TbFeedback.Clear();
+                LbMain.Focus();
+                DisplayLbMain();
+            }
+            else
+            {
+                TbFeedback.Text = "Duplicate entry. Licence plate already entered.";
+                TbInput.Clear();
+                return;
+            }
 
         } // End of BtnAdd method
 
@@ -257,8 +266,94 @@ namespace ParkingTracker
         {
             DisplayLbMain();
 
+            TbFeedback.Clear();
+
+            InputFormatCheck();
+
+            // This if statement allows the Linear search method to stop itself if the InputFormatCheck method
+            // returns a formatting error when called. It then resets the global variable that controls the 
+            // fault detection so that it can be resued.
+            if (globalIfcFault == true)
+            {
+                globalIfcFault = false;
+                return;
+            }
+
+            string linearTarget = TbInput.Text;
+            bool linearFound = false;
+
+            for (int listIndexOfVal = 0; listIndexOfVal <= mainLinesGlobal.Count; listIndexOfVal++)
+            {
+                if ((!linearFound) && (listIndexOfVal >= mainLinesGlobal.Count))
+                {
+                    TbFeedback.Text = "Licence plate not found in the Main list.";
+                    return;
+                }
+                else if (linearTarget == mainLinesGlobal[listIndexOfVal])
+                {
+                    TbFeedback.Text = $"{linearTarget} found at index {listIndexOfVal}";
+                    linearFound = true;
+                    LbMain.SetSelected(listIndexOfVal, true);
+                    TbInput.Clear();
+                    return;
+                }
+            }
 
         } // End of Linear search method
+
+
+
+        private void LbMainSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TbInput.Text = LbMain.GetItemText(LbMain.SelectedItem);
+
+        }
+
+
+
+        // This is the Edit method. This method will be responsible for allowing a user to change
+        // the selected item on the list to the value entered into the TbInput textbox.
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            InputFormatCheck();
+
+            // This if statement allows the Edit method to stop itself if the InputFormatCheck method
+            // returns a formatting error when called. It then resets the global variable that controls the 
+            // fault detection so that it can be resued.
+            if (globalIfcFault == true)
+            {
+                globalIfcFault = false;
+                return;
+            }
+
+            string inputValue = TbInput.Text;
+
+            if (LbMain.SelectedItem == null)
+            {
+                TbFeedback.Text = "Please select an entry in the Main list to edit.";
+                return;
+            }
+            else if (mainLinesGlobal.Contains(inputValue))
+            {
+                TbFeedback.Text = "Duplicate entry. Licence plate already present in Main list.";
+                TbInput.Clear();
+                return;
+            }
+            else if (LbMain.SelectedIndex != -1 && LbMain.SelectedItem != null)
+            {
+                string selectedIndexInput = LbMain.SelectedItem.ToString();
+                int indexInput = LbMain.FindString(selectedIndexInput);
+
+                TbFeedback.Text = $"Licence plate {selectedIndexInput} has been edited to {inputValue}.";
+
+                mainLinesGlobal[indexInput] = inputValue;
+
+                TbInput.Clear();
+
+                DisplayLbMain();
+            }
+
+        } // End of Edit method
 
 
 
