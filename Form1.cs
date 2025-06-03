@@ -103,7 +103,6 @@ namespace ParkingTracker
         // mainLinesGlobal list variable, where most of our data handing will take place
         public void DisplayLbMain()
         {
-            TbFeedback.Clear();
             // Here we clear LbMain to keep things readable & user friendly
             LbMain.Items.Clear();
 
@@ -151,13 +150,6 @@ namespace ParkingTracker
                 string varTbInputAdd = TbInput.Text;
                 TbFeedback.Text = $"varTbInputAdd = {varTbInputAdd}";
 
-                if (mainLinesGlobal == null)
-                {
-                    TbFeedback.Text = "Please load a file before trying to add a Licence.";
-                    return;
-                }
-                else
-                {
                     if (!mainLinesGlobal.Contains(varTbInputAdd))
                     {
                         mainLinesGlobal.Add(varTbInputAdd);
@@ -170,13 +162,6 @@ namespace ParkingTracker
                         TbFeedback.Text = "Duplicate entry. Licence plate already entered.";
                         TbInput.Clear();
                     }
-                }
-            }
-            else
-            {
-                TbFeedback.Text = "Invalid input, please input a Licence plate number in the format: #ABC-###.";
-                TbInput.Clear();
-            }
 
         } // End of BtnAdd method
 
@@ -248,7 +233,7 @@ namespace ParkingTracker
             // an error immediately
             if (mainLinesGlobal == null)
             {
-                TbFeedback.Text = "Please load a file before performing a search.";
+                TbFeedback.Text = "Please load a file first.";
                 TbInput.Clear();
                 globalIfcFault = true;
                 return;
