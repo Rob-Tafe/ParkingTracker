@@ -132,7 +132,6 @@
             this.LbMain.Name = "LbMain";
             this.LbMain.Size = new System.Drawing.Size(100, 264);
             this.LbMain.TabIndex = 8;
-            this.LbMain.Click += new System.EventHandler(this.LbMainSelect_SelectedIndexChanged);
             // 
             // LbTagged
             // 

@@ -7,12 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+// This allows us to use regex to ensure the correct format of the licence plates.
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using Microsoft.SqlServer.Server;
-
-// This allows us to use regex to ensure the correct format of the licence plates
-using System.Text.RegularExpressions;
 
 namespace ParkingTracker
 {
@@ -72,7 +72,7 @@ namespace ParkingTracker
                 }
             }
 
-        } // End of BtnOpen method
+        } // End of BtnOpen method.
 
 
 
@@ -95,15 +95,15 @@ namespace ParkingTracker
                 TbFeedback.Text = "The file was not found.";
             }
 
-        } // End of ReadLbMain method
+        } // End of ReadLbMain method.
 
 
 
         // Start of DisplayLbMain method. This method is responsible for displaying the data from the
-        // mainLinesGlobal list variable, where most of our data handing will take place
+        // mainLinesGlobal list variable, where most of our data handing will take place.
         public void DisplayLbMain()
         {
-            // Here we clear LbMain to keep things readable & user friendly
+            // Here we clear LbMain to keep things readable & user friendly.
             LbMain.Items.Clear();
 
             // Here we add the content of mainLinesGlobal list that stores all of our data that was loaded
@@ -118,7 +118,7 @@ namespace ParkingTracker
                 }
             }
 
-        } // End of DisplayLbMain method
+        } // End of DisplayLbMain method.
 
 
 
@@ -133,7 +133,7 @@ namespace ParkingTracker
             
 
 
-        } // End of BtnSave method
+        } // End of BtnSave method.
         
 
 
@@ -172,7 +172,7 @@ namespace ParkingTracker
                 return;
             }
 
-        } // End of BtnAdd method
+        } // End of BtnAdd method.
 
 
 
@@ -193,12 +193,12 @@ namespace ParkingTracker
                 return;
             }
 
-            // Here we declare the variables that will allow the binary search to function properly
+            // Here we declare the variables that will allow the binary search to function properly.
             int lowBound = 0;
             int highBound = mainLinesGlobal.Count - 1;
             string target = TbInput.Text;
 
-            // This is the while loop that makes up the core function of the binary search method
+            // This is the while loop that makes up the core function of the binary search method.
             while ((lowBound <= highBound))
             {
                 int mid = (lowBound + highBound) / 2;
@@ -227,7 +227,7 @@ namespace ParkingTracker
 
             TbFeedback.Text = "Licence plate not found.";
 
-        } // End of binary search method
+        } // End of binary search method.
 
 
 
@@ -239,7 +239,7 @@ namespace ParkingTracker
             string textCheck = TbInput.Text;
 
             // This first if statement ensures everythng is in place for the binary search to function without throwing
-            // an error immediately
+            // an error immediately.
             if (mainLinesGlobal == null)
             {
                 TbFeedback.Text = "Please load a file first.";
@@ -256,12 +256,12 @@ namespace ParkingTracker
                 return;
             }
 
-        } // End of InputFormatCheck method
+        } // End of InputFormatCheck method.
 
 
 
         // Linear search method. This method will perform a linear search for the licence plate entered into
-        // the TbInput textbox
+        // the TbInput textbox.
         private void BtnLinear_Click(object sender, EventArgs e)
         {
             DisplayLbMain();
@@ -299,15 +299,48 @@ namespace ParkingTracker
                 }
             }
 
-        } // End of Linear search method
+        } // End of Linear search method.
 
 
 
+        // This is the LbMainSelect method. It will add a licence plate that is clicked on in the LbMain
+        // listbox to the TbInput textbox.
         private void LbMainSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             TbInput.Text = LbMain.GetItemText(LbMain.SelectedItem);
 
-        }
+        } // End of LbMainSelect method.
+
+
+
+        // This is the LbMainDelete method.It will delete an element from the Main listbox when the
+        // element is double clicked.
+        private void LbMainDelete_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            string deleteVal = LbMain.GetItemText(LbMain.SelectedItem);
+
+            mainLinesGlobal.Remove($"{deleteVal}");
+
+            TbFeedback.Text = $"{deleteVal} deleted from the Main list.";
+
+            DisplayLbMain();
+        } // End of LbMainDelete method.
+
+
+
+        // This is the BtnDelete method. It will delete a value that the user has selected from the LbMain listbox.
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            string deleteVal = LbMain.GetItemText(LbMain.SelectedItem);
+
+            mainLinesGlobal.Remove($"{deleteVal}");
+
+            TbFeedback.Text = $"{deleteVal} deleted from the Main list.";
+
+            DisplayLbMain();
+
+        } // End of Delete (button) method.
 
 
 
@@ -353,12 +386,12 @@ namespace ParkingTracker
                 DisplayLbMain();
             }
 
-        } // End of Edit method
+        } // End of Edit method.
 
 
 
-    } // End of Parkingtraker : Form class
+    } // End of Parkingtraker : Form class.
 
 
 
-} // End of ParkingTracker namespace
+} // End of ParkingTracker namespace.
