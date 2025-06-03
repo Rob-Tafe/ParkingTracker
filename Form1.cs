@@ -229,7 +229,6 @@ namespace ParkingTracker
                     lowBound = mid + 1;
                 }
 
-                TbInput.Clear();
             }
 
             TbFeedback.Text = "Licence plate not found.";
