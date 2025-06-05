@@ -103,7 +103,7 @@ namespace ParkingTracker
 
         // Start of BtnSave method. This method is responsible for writing the contents of mainLinesGlobal
         // to the selected save file.
-        private void BtnSave_Click(object seder, EventArgs e)
+        public void BtnSave_Click(object seder, EventArgs e)
         {
             TbFeedback.Clear();
 
@@ -111,6 +111,7 @@ namespace ParkingTracker
             saveTxtFile.Title = "Save Licence plate list";
             saveTxtFile.Filter = "TXT files|*.txt";
             saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
+            saveTxtFile.FileName = FileNameIterator(saveTxtFile.InitialDirectory);
 
             if (saveTxtFile.ShowDialog() == DialogResult.OK)
             {
@@ -120,7 +121,7 @@ namespace ParkingTracker
                 }
                 catch
                 {
-                    TbFeedback.Text = "Error: COuld not save file to disk.";
+                    TbFeedback.Text = "Error: Could not save file to disk.";
                     return;
                 }
             }
@@ -147,18 +148,21 @@ namespace ParkingTracker
         // Unique file name method. This method is responsible for generating a unique name
         // for each new text file, and will be automatically inserted into the file name area
         // of the save file dialog.
-        public static string FileNameIterator(string saveFilePath)
+        public string FileNameIterator(string fileDirectory)
         {
-            string saveFileName = Path.GetFileName(saveFilePath);
-            string fileExt = Path.GetExtension(saveFilePath);
+            string saveFileExt = ".txt";
 
             for (int i = 1; ; i++)
             {
-                if (!File.Exists(saveFilePath))
+                string saveFileName = $"day_{i}{saveFileExt}";
+                string fullPath = Path.Combine(fileDirectory, saveFileName);
+
+                if (!File.Exists(fullPath))
                 {
-                    return saveFilePath;
+                    TbFeedback.Text = $"{saveFileName}";
+                    return saveFileName;
                 }
-                saveFilePath = Path.Combine(saveFileName + "_" + i + fileExt);
+                
             }
         }
 
