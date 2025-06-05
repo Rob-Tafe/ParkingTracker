@@ -115,16 +115,8 @@ namespace ParkingTracker
 
             if (File.Exists(readFilePath))
             {
-                List<string> lines = File.ReadAllLines(readFilePath).ToList();
 
-                mainLinesGlobal = lines;
-
-                DisplayLbMain();
             }
-            else
-            {
-                TbFeedback.Text = "The file was not found.";
-                return;
             }
 
         } // End of ReadLbMain method.
@@ -141,8 +133,6 @@ namespace ParkingTracker
 
                 }
             }
-
-        } // End of WriteLbMain method.
 
 
 
