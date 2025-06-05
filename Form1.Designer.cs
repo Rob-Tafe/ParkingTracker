@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParkingTracker));
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.TbInput = new System.Windows.Forms.TextBox();
@@ -47,6 +48,9 @@
             this.LabelFeedback = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.LabelInput = new System.Windows.Forms.Label();
+            this.LbActSysName = new System.Windows.Forms.Label();
+            this.PbLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnOpen
@@ -132,6 +136,7 @@
             this.LbMain.Name = "LbMain";
             this.LbMain.Size = new System.Drawing.Size(100, 264);
             this.LbMain.TabIndex = 8;
+            this.LbMain.Click += new System.EventHandler(this.LbMainSelect_SelectedIndexChanged);
             // 
             // LbTagged
             // 
@@ -140,6 +145,7 @@
             this.LbTagged.Name = "LbTagged";
             this.LbTagged.Size = new System.Drawing.Size(100, 264);
             this.LbTagged.TabIndex = 9;
+            this.LbTagged.DoubleClick += new System.EventHandler(this.TaggedDelete_DoubleClick);
             // 
             // BtnDelete
             // 
@@ -149,6 +155,7 @@
             this.BtnDelete.TabIndex = 10;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnTag
             // 
@@ -160,6 +167,7 @@
             this.toolTip1.SetToolTip(this.BtnTag, "Select a Licence number from the\r\n\'Main\' list and click the \"Tag\" button\r\nto add " +
         "it to the \"Tagged\" list.\r\n");
             this.BtnTag.UseVisualStyleBackColor = true;
+            this.BtnTag.Click += new System.EventHandler(this.BtnTag_Click);
             // 
             // TbFeedback
             // 
@@ -205,11 +213,35 @@
             this.LabelInput.TabIndex = 16;
             this.LabelInput.Text = "Input";
             // 
+            // LbActSysName
+            // 
+            this.LbActSysName.AutoSize = true;
+            this.LbActSysName.Location = new System.Drawing.Point(340, 10);
+            this.LbActSysName.Name = "LbActSysName";
+            this.LbActSysName.Size = new System.Drawing.Size(103, 13);
+            this.LbActSysName.TabIndex = 18;
+            this.LbActSysName.Text = "Active Systems PTY";
+            // 
+            // PbLogo
+            // 
+            this.PbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PbLogo.Image = global::ParkingTracker.Properties.Resources.logo_active_systems_pty;
+            this.PbLogo.ImageLocation = "";
+            this.PbLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("PbLogo.InitialImage")));
+            this.PbLogo.Location = new System.Drawing.Point(443, 10);
+            this.PbLogo.Name = "PbLogo";
+            this.PbLogo.Size = new System.Drawing.Size(50, 50);
+            this.PbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbLogo.TabIndex = 17;
+            this.PbLogo.TabStop = false;
+            // 
             // ParkingTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 411);
+            this.Controls.Add(this.PbLogo);
+            this.Controls.Add(this.LbActSysName);
             this.Controls.Add(this.LabelInput);
             this.Controls.Add(this.LabelFeedback);
             this.Controls.Add(this.LabelMain);
@@ -227,8 +259,10 @@
             this.Controls.Add(this.TbInput);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnOpen);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParkingTracker";
-            this.Text = "Parking Tracker";
+            this.Text = "Licence Plate Management";
+            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +288,8 @@
         private System.Windows.Forms.Label LabelFeedback;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label LabelInput;
+        private System.Windows.Forms.PictureBox PbLogo;
+        private System.Windows.Forms.Label LbActSysName;
     }
 }
 

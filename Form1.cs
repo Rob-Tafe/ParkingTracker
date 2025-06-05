@@ -34,11 +34,11 @@ namespace ParkingTracker
         // This is the list variable that will hold the data for the LbMain listbox
         // to display, as well as allow us to altar without having to commit to writing
         // to a text file with every button press.
-        List<string> mainLinesGlobal;
+        List<string> mainLinesGlobal = new List<string>();
 
         // This is the list variable that will hold the data for the Lbtagged list box to
         // display.
-        List<string> taggedLinesGlobal;
+        List<string> taggedLinesGlobal = new List<string>();
 
         string nameOfSelectedTxtFile;
 
@@ -118,7 +118,29 @@ namespace ParkingTracker
                 }
             }
 
+            DisplayLbTagged();
+
         } // End of DisplayLbMain method.
+
+
+
+        // Start of DisplayLbTagged method. This method is responsible for displaying the list of Tagged licence
+        // plate numbers. It should update alongside LbMain (the DisplayLbMain method).
+        public void DisplayLbTagged()
+        {
+            LbTagged.Items.Clear();
+
+            if (taggedLinesGlobal != null && taggedLinesGlobal.Any(line => Regex.IsMatch(line, @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                taggedLinesGlobal.Sort();
+
+                foreach (string line in taggedLinesGlobal)
+                {
+                    LbTagged.Items.Add($"{line}");
+                }
+            }
+
+        } // End of DisplayLbTagged method.
 
 
 
@@ -328,6 +350,29 @@ namespace ParkingTracker
 
 
 
+        // This is the TaggedDelete_DoubleClick method. It allows a user to double click on a licence plate from the
+        // LbTagged listbox to delete it.
+        private void TaggedDelete_DoubleClick(object sender, EventArgs e)
+        {
+            string dcDeleteVal = LbTagged.GetItemText(LbTagged.SelectedItem);
+            if (dcDeleteVal != null && (Regex.IsMatch(dcDeleteVal, @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                taggedLinesGlobal.Remove($"{dcDeleteVal}");
+
+                TbFeedback.Text = $"{dcDeleteVal} deleted from the Tagged list.";
+
+                DisplayLbMain();
+            }
+            else
+            {
+                TbFeedback.Text = "Please double click on a Licence plate number to delete it.";
+                return;
+            }
+            
+        } // End of TaggedDelete_DoubleClick method
+
+
+
         // This is the Edit method. This method will be responsible for allowing a user to change
         // the selected item on the list to the value entered into the TbInput textbox.
         private void BtnEdit_Click(object sender, EventArgs e)
@@ -371,6 +416,40 @@ namespace ParkingTracker
             }
 
         } // End of Edit method.
+
+
+
+        // This is the Tag method. It allows a user to select a licence plate from the LbMain listbox and add it
+        // to the LbTagged listbox.
+        private void BtnTag_Click(object sender, EventArgs e)
+        {
+
+            TbFeedback.Clear();
+
+            string selectedValToTag = LbMain.GetItemText(LbMain.SelectedItem);
+
+            if (!(taggedLinesGlobal.Contains(selectedValToTag)) && (Regex.IsMatch(selectedValToTag, @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                taggedLinesGlobal.Add(selectedValToTag);
+
+                mainLinesGlobal.Remove(selectedValToTag);
+
+                TbFeedback.Text = $"{selectedValToTag} moved to Tagged list.";
+            }
+            else if (!(Regex.IsMatch(selectedValToTag, @"^\d[A-Z]{3}-\d{3}$"))) 
+            {
+                TbFeedback.Text = "Please select a valid Licence plate to Tag.";
+                return;
+            }
+            else
+            {
+                TbFeedback.Text = $"{selectedValToTag} is already present in the Tagged list.";
+                return;
+            }
+
+            DisplayLbMain();
+            
+        } // End of Tag method.
 
 
 
