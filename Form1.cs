@@ -77,13 +77,37 @@ namespace ParkingTracker
 
 
 
+        // Start of ReadLbMain method. This method is responsible for reading the contents of the selected
+        // text file.
+        private void ReadLbMain(string readFilePath)
+        {
+            TbFeedback.Clear();
+
+            if (File.Exists(readFilePath))
+            {
+                List<string> lines = File.ReadAllLines(readFilePath).ToList();
+
+                mainLinesGlobal = lines;
+
+                DisplayLbMain();
+            }
+            else
+            {
+                TbFeedback.Text = "The file was not found.";
+                return;
+            }
+
+        } // End of ReadLbMain method.
+
+
+
         // Start of BtnSave method. This method is responsible for writing the contents of mainLinesGlobal
         // to the selected save file.
         private void BtnSave_Click(object seder, EventArgs e)
         {
             TbFeedback.Clear();
 
-            OpenFileDialog saveTxtFile = new OpenFileDialog();
+            SaveFileDialog saveTxtFile = new SaveFileDialog();
             saveTxtFile.Title = "Save Licence plate list";
             saveTxtFile.Filter = "TXT files|*.txt";
             saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
@@ -107,32 +131,38 @@ namespace ParkingTracker
 
 
 
-        // Start of ReadLbMain method. This method is responsible for reading the contents of the selected
-        // text file.
-        private void ReadLbMain(string readFilePath)
-        {
-            TbFeedback.Clear();
-
-            if (File.Exists(readFilePath))
-            {
-
-            }
-            }
-
-        } // End of ReadLbMain method.
-
-
-
         // Write method. This method will write the values in mainLinesGlobal to a text file.
         private void WriteLbMain(string writeFilePath)
         {
             if (!(File.Exists(writeFilePath)))
             {
-                using (BinaryWriter listWriter = new BinaryWriter(File.Open(writeFilePath, FileMode.Create)))
+                using (BinaryWriter listWriter = new BinaryWriter(File.Create(writeFilePath)))
                 {
 
                 }
             }
+
+        } // End of WriteLbMain method.
+
+
+
+        // Unique file name method. This method is responsible for generating a unique name
+        // for each new text file, and will be automatically inserted into the file name area
+        // of the save file dialog.
+        public static string FileNameIterator(string saveFilePath)
+        {
+            string saveFileName = Path.GetFileName(saveFilePath);
+            string fileExt = Path.GetExtension(saveFilePath);
+
+            for (int i = 1; ; i++)
+            {
+                if (!File.Exists(saveFilePath))
+                {
+                    return saveFilePath;
+                }
+                saveFilePath = Path.Combine(saveFileName + "_" + i + fileExt);
+            }
+        }
 
 
 
