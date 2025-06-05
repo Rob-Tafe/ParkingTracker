@@ -313,22 +313,6 @@ namespace ParkingTracker
 
 
 
-        // This is the LbMainDelete method.It will delete an element from the Main listbox when the
-        // element is double clicked.
-        private void LbMainDelete_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-            string deleteVal = LbMain.GetItemText(LbMain.SelectedItem);
-
-            mainLinesGlobal.Remove($"{deleteVal}");
-
-            TbFeedback.Text = $"{deleteVal} deleted from the Main list.";
-
-            DisplayLbMain();
-        } // End of LbMainDelete method.
-
-
-
         // This is the BtnDelete method. It will delete a value that the user has selected from the LbMain listbox.
         private void BtnDelete_Click(object sender, EventArgs e)
         {
