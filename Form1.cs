@@ -326,10 +326,24 @@ namespace ParkingTracker
 
 
         // This is the LbMainSelect method. It will add a licence plate that is clicked on in the LbMain
-        // listbox to the TbInput textbox.
+        // listbox to the TbInput textbox. This method will also display information about the currently
+        // selected licence plate.
         private void LbMainSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TbInput.Text = LbMain.GetItemText(LbMain.SelectedItem);
+            if ((Regex.IsMatch(LbMain.GetItemText(LbMain.SelectedItem), @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                TbFeedback.Clear();
+                TbInput.Text = LbMain.GetItemText(LbMain.SelectedItem);
+                LbTagged.ClearSelected();
+                TbFeedback.Text = $"{LbMain.SelectedItem} currently selected.";
+            }
+            else if (!(Regex.IsMatch(LbMain.GetItemText(LbMain.SelectedItem), @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                TbFeedback.Text = "No licence plate selected.";
+                LbMain.ClearSelected();
+                DisplayLbMain();
+                return;
+            }
 
         } // End of LbMainSelect method.
 
@@ -350,26 +364,28 @@ namespace ParkingTracker
 
 
 
-        // This is the TaggedDelete_DoubleClick method. It allows a user to double click on a licence plate from the
+        // This is the TaggedRemove_DoubleClick method. It allows a user to double click on a licence plate from the
         // LbTagged listbox to delete it.
-        private void TaggedDelete_DoubleClick(object sender, EventArgs e)
+        private void TaggedRemove_DoubleClick(object sender, EventArgs e)
         {
-            string dcDeleteVal = LbTagged.GetItemText(LbTagged.SelectedItem);
-            if (dcDeleteVal != null && (Regex.IsMatch(dcDeleteVal, @"^\d[A-Z]{3}-\d{3}$")))
+            string dcRemoveVal = LbTagged.GetItemText(LbTagged.SelectedItem);
+            if (dcRemoveVal != null && (Regex.IsMatch(dcRemoveVal, @"^\d[A-Z]{3}-\d{3}$")))
             {
-                taggedLinesGlobal.Remove($"{dcDeleteVal}");
+                mainLinesGlobal.Add(dcRemoveVal);
 
-                TbFeedback.Text = $"{dcDeleteVal} deleted from the Tagged list.";
+                taggedLinesGlobal.Remove($"{dcRemoveVal}");
+
+                TbFeedback.Text = $"{dcRemoveVal} removed from the Tagged list and added to the Main list.";
 
                 DisplayLbMain();
             }
             else
             {
-                TbFeedback.Text = "Please double click on a Licence plate number to delete it.";
+                TbFeedback.Text = "Please double click on a Licence plate number to move it from the Tagged list to Main list.";
                 return;
             }
             
-        } // End of TaggedDelete_DoubleClick method
+        } // End of TaggedRemove_DoubleClick method
 
 
 
@@ -450,6 +466,29 @@ namespace ParkingTracker
             DisplayLbMain();
             
         } // End of Tag method.
+
+
+
+        // This is the ShowSelectedValueInfo method. It is responsible for displaying information about the selected
+        // licence plate in the TbFeedback textbox.
+        private void ShowSelectedTaggedValueInfo(object sender, EventArgs e)
+        {
+            if ((Regex.IsMatch(LbTagged.GetItemText(LbTagged.SelectedItem), @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                TbFeedback.Clear();
+                TbInput.Text = LbTagged.GetItemText(LbTagged.SelectedItem);
+                LbMain.ClearSelected();
+                TbFeedback.Text = $"{LbTagged.SelectedItem} currently selected.";
+            }
+            else if (!(Regex.IsMatch(LbTagged.GetItemText(LbTagged.SelectedItem), @"^\d[A-Z]{3}-\d{3}$")))
+            {
+                TbFeedback.Text = "No licence plate selected.";
+                LbTagged.ClearSelected();
+                DisplayLbMain();
+                return;
+            }
+
+        } // End of ShowSelectedTaggedValueInfo method.
 
 
 

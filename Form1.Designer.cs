@@ -145,7 +145,8 @@
             this.LbTagged.Name = "LbTagged";
             this.LbTagged.Size = new System.Drawing.Size(100, 264);
             this.LbTagged.TabIndex = 9;
-            this.LbTagged.DoubleClick += new System.EventHandler(this.TaggedDelete_DoubleClick);
+            this.LbTagged.Click += new System.EventHandler(this.ShowSelectedTaggedValueInfo);
+            this.LbTagged.DoubleClick += new System.EventHandler(this.TaggedRemove_DoubleClick);
             // 
             // BtnDelete
             // 
