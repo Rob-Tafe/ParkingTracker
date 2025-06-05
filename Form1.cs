@@ -125,8 +125,6 @@ namespace ParkingTracker
                 }
             }
 
-
-
         } // End of BtnSave method.
 
 
