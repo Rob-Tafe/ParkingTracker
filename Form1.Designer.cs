@@ -88,6 +88,7 @@
             this.BtnReset.TabIndex = 3;
             this.BtnReset.Text = "Reset";
             this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // BtnBinary
             // 

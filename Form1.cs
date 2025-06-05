@@ -492,6 +492,42 @@ namespace ParkingTracker
 
 
 
+        // This is the Reset button method. It will remove all data from both lists (mainLinesGlobal and 
+        // taggedLinesGlobal) and clear all data from the list boxes.
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            TbFeedback.Clear();
+            TbFeedback.Text = "Reset of data lists initiated.";
+
+            
+            if ((mainLinesGlobal.Count > 0) && (taggedLinesGlobal.Count > 0))
+            {
+                DialogResult resetConfirm = MessageBox.Show("Are you sure you wish to clear all data from the Main AND Tagged lists?",
+                "Reset Confirmation", MessageBoxButtons.YesNo);
+
+                if (resetConfirm == DialogResult.Yes)
+                {
+                    mainLinesGlobal = new List<string>();
+                    taggedLinesGlobal = new List<string>();
+                    TbInput.Clear();
+                    DisplayLbMain();
+                    TbFeedback.Text = "Reset complete. All data cleared.";
+                }
+                else if (resetConfirm == DialogResult.No)
+                {
+                    TbFeedback.Text = "Reset cancelled.";
+                    return;
+                }
+            }
+            else
+            {
+                TbFeedback.Text = "No data present.";
+            }
+
+        } // End of Reset button method.
+
+
+
     } // End of Parkingtraker : Form class.
 
 
