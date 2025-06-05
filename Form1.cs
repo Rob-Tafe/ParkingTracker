@@ -493,7 +493,6 @@ namespace ParkingTracker
         // to the LbTagged listbox.
         private void BtnTag_Click(object sender, EventArgs e)
         {
-
             TbFeedback.Clear();
 
             string selectedValToTag = LbMain.GetItemText(LbMain.SelectedItem);
