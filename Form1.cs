@@ -144,21 +144,6 @@ namespace ParkingTracker
 
 
 
-        // Start of BtnSave method. This method is responsible for writing the contents of mainLinesGlobal
-        // to the selected save file.
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            TbFeedback.Clear();
-
-
-
-            
-
-
-        } // End of BtnSave method.
-        
-
-
         // Start of BtnAdd method. This method is responsiblef or adding a licence plate number from the TbInput
         // text box to the LbMain list box.
         private void BtnAdd_Click(object sender, EventArgs e)
