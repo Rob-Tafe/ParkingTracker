@@ -103,21 +103,33 @@ namespace ParkingTracker
 
         // Start of BtnSave method. This method is responsible for writing the contents of mainLinesGlobal
         // to the selected save file.
-        public void BtnSave_Click(object seder, EventArgs e)
+        public void BtnSave_Click(object sender, EventArgs e)
         {
             TbFeedback.Clear();
 
             SaveFileDialog saveTxtFile = new SaveFileDialog();
             saveTxtFile.Title = "Save Licence plate list";
             saveTxtFile.Filter = "TXT files|*.txt";
-            saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
+                
+                // These are the various directories that can be used based on where the program
+                // is being used.
+                // Tafe directory
+                // saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
+            
+                // Home directory
+                saveTxtFile.InitialDirectory = @"D:\Programs\Visual Studio Projects\ParkingTracker\ParkingTracker Text Files";
+
+                // Other directory
+                // saveTxtFile.InitialDirectory = @"YOUR DIRECTORY HERE";
+
             saveTxtFile.FileName = FileNameIterator(saveTxtFile.InitialDirectory);
 
-            if (saveTxtFile.ShowDialog() == DialogResult.OK)
+            if ((saveTxtFile.ShowDialog() == DialogResult.OK))
             {
                 try
                 {
-
+                    WriteLbMain(saveTxtFile.FileName);
+                    TbFeedback.Text = $"{saveTxtFile.FileName} saved.";
                 }
                 catch
                 {
@@ -133,11 +145,13 @@ namespace ParkingTracker
         // Write method. This method will write the values in mainLinesGlobal to a text file.
         private void WriteLbMain(string writeFilePath)
         {
-            if (!(File.Exists(writeFilePath)))
+            using (StreamWriter listWriter = new StreamWriter(writeFilePath))
             {
-                using (BinaryWriter listWriter = new BinaryWriter(File.Create(writeFilePath)))
-                {
+                List<string> writeLines = mainLinesGlobal;
 
+                foreach (string line in writeLines)
+                {
+                    listWriter.WriteLine(line);
                 }
             }
 
