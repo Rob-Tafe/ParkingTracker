@@ -69,6 +69,7 @@ namespace ParkingTracker
                 catch
                 {
                     TbFeedback.Text = "Error: Could not read file from disk.";
+                    return;
                 }
             }
 
@@ -76,15 +77,45 @@ namespace ParkingTracker
 
 
 
-        // Start of ReadLbMain method. This method is responsible for reading the contents of the selected
-        // text file.
-        private void ReadLbMain(string filePath)
+        // Start of BtnSave method. This method is responsible for writing the contents of mainLinesGlobal
+        // to the selected save file.
+        private void BtnSave_Click(object seder, EventArgs e)
         {
             TbFeedback.Clear();
 
-            if (File.Exists(filePath))
+            OpenFileDialog saveTxtFile = new OpenFileDialog();
+            saveTxtFile.Title = "Save Licence plate list";
+            saveTxtFile.Filter = "TXT files|*.txt";
+            saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
+
+            if (saveTxtFile.ShowDialog() == DialogResult.OK)
             {
-                List<string> lines = File.ReadAllLines(filePath).ToList();
+                try
+                {
+
+                }
+                catch
+                {
+                    TbFeedback.Text = "Error: COuld not save file to disk.";
+                    return;
+                }
+            }
+
+
+
+        } // End of BtnSave method.
+
+
+
+        // Start of ReadLbMain method. This method is responsible for reading the contents of the selected
+        // text file.
+        private void ReadLbMain(string readFilePath)
+        {
+            TbFeedback.Clear();
+
+            if (File.Exists(readFilePath))
+            {
+                List<string> lines = File.ReadAllLines(readFilePath).ToList();
 
                 mainLinesGlobal = lines;
 
@@ -93,9 +124,25 @@ namespace ParkingTracker
             else
             {
                 TbFeedback.Text = "The file was not found.";
+                return;
             }
 
         } // End of ReadLbMain method.
+
+
+
+        // Write method. This method will write the values in mainLinesGlobal to a text file.
+        private void WriteLbMain(string writeFilePath)
+        {
+            if (!(File.Exists(writeFilePath)))
+            {
+                using (BinaryWriter listWriter = new BinaryWriter(File.Open(writeFilePath, FileMode.Create)))
+                {
+
+                }
+            }
+
+        } // End of WriteLbMain method.
 
 
 
@@ -141,7 +188,7 @@ namespace ParkingTracker
             }
 
         } // End of DisplayLbTagged method.
-
+        
 
 
         // Start of BtnAdd method. This method is responsiblef or adding a licence plate number from the TbInput
