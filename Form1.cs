@@ -148,10 +148,6 @@ namespace ParkingTracker
             {
                 List<string> writeLines = mainLinesGlobal;
 
-                foreach (string line in writeLines)
-                {
-                    listWriter.WriteLine(line);
-                }
             }
 
         } // End of WriteLbMain method.
