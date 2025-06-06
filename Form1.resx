@@ -120,6 +120,43 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="BtnSave.ToolTip" xml:space="preserve">
+    <value>This is the Save button. It lets you save the data that is
+currently displayed in the Main list and Tagged list to
+a file. It uses an auto-incrementing name system to 
+automatically give each file a new name.</value>
+  </data>
+  <data name="BtnBinary.ToolTip" xml:space="preserve">
+    <value>This is the Binary Search button. It will use the Licence
+plate number from the 'Input' field perform a Binary
+search of the data in the Main list. If it finds the searched
+Licence plate number, it will select it in the Main list, and
+inform the user at which index it was found in the Feedback
+field.</value>
+  </data>
+  <data name="BtnLinear.ToolTip" xml:space="preserve">
+    <value>This is the Linear Search button. It will use the Licence
+plate number from the 'Input' field perform a Linear
+search of the data in the Main list. If it finds the searched
+Licence plate number, it will select it in the Main list, and
+inform the user at which index it was found in the Feedback
+field.
+</value>
+  </data>
+  <data name="LbTagged.ToolTip" xml:space="preserve">
+    <value>This is the Tagged list. You can select a Licence
+plate number from the Main list and click 'Tag' in
+order to add it to the Tagged list. This list is used
+to keep track of Licence plate numbers that you 
+wish to remember or investigate further.
+
+You may also move a Licence plate number from
+the Tagged list to the Main list by double clicking
+on the Licence plate number you wish to move.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="PbLogo.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

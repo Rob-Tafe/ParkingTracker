@@ -195,7 +195,7 @@ namespace ParkingTracker
         private void SaveOnFormClose(object sender, FormClosedEventArgs e)
         {
             BtnSave_Click(sender, e);
-        }
+        } // End of SaveOnFormClose method.
 
 
 

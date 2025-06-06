@@ -60,6 +60,7 @@
             this.BtnOpen.Size = new System.Drawing.Size(60, 35);
             this.BtnOpen.TabIndex = 0;
             this.BtnOpen.Text = "Open";
+            this.toolTip1.SetToolTip(this.BtnOpen, "This is the Open button. It lets you open a file and\r\ndisplay the stored data.");
             this.BtnOpen.UseVisualStyleBackColor = true;
             this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
@@ -70,6 +71,7 @@
             this.BtnSave.Size = new System.Drawing.Size(60, 35);
             this.BtnSave.TabIndex = 1;
             this.BtnSave.Text = "Save";
+            this.toolTip1.SetToolTip(this.BtnSave, resources.GetString("BtnSave.ToolTip"));
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -79,6 +81,9 @@
             this.TbInput.Name = "TbInput";
             this.TbInput.Size = new System.Drawing.Size(140, 20);
             this.TbInput.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.TbInput, "This is the Input text field, where you can enter Licence\r\nplate numbers for sear" +
+        "ching, adding a number to the\r\nMain list, and editing a selected value from the " +
+        "Main\r\nlist.");
             // 
             // BtnReset
             // 
@@ -87,6 +92,8 @@
             this.BtnReset.Size = new System.Drawing.Size(60, 35);
             this.BtnReset.TabIndex = 3;
             this.BtnReset.Text = "Reset";
+            this.toolTip1.SetToolTip(this.BtnReset, "This is the Reset button. It will clear all data from both\r\nthe Main list and the" +
+        " Tagged list.");
             this.BtnReset.UseVisualStyleBackColor = true;
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
@@ -97,6 +104,7 @@
             this.BtnBinary.Size = new System.Drawing.Size(60, 35);
             this.BtnBinary.TabIndex = 4;
             this.BtnBinary.Text = "Binary Search";
+            this.toolTip1.SetToolTip(this.BtnBinary, resources.GetString("BtnBinary.ToolTip"));
             this.BtnBinary.UseVisualStyleBackColor = true;
             this.BtnBinary.Click += new System.EventHandler(this.BtnBinary_Click);
             // 
@@ -107,6 +115,7 @@
             this.BtnLinear.Size = new System.Drawing.Size(60, 35);
             this.BtnLinear.TabIndex = 5;
             this.BtnLinear.Text = "Linear Search";
+            this.toolTip1.SetToolTip(this.BtnLinear, resources.GetString("BtnLinear.ToolTip"));
             this.BtnLinear.UseVisualStyleBackColor = true;
             this.BtnLinear.Click += new System.EventHandler(this.BtnLinear_Click);
             // 
@@ -117,6 +126,8 @@
             this.BtnAdd.Size = new System.Drawing.Size(60, 35);
             this.BtnAdd.TabIndex = 6;
             this.BtnAdd.Text = "Add";
+            this.toolTip1.SetToolTip(this.BtnAdd, "This is the Add button. It can be used to enter a Licence\r\nplate number from the " +
+        "\'Input\' text field into the Main list.");
             this.BtnAdd.UseVisualStyleBackColor = true;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
@@ -127,6 +138,9 @@
             this.BtnEdit.Size = new System.Drawing.Size(60, 35);
             this.BtnEdit.TabIndex = 7;
             this.BtnEdit.Text = "Edit";
+            this.toolTip1.SetToolTip(this.BtnEdit, "This is the Edit button. If you select a Licence plate\r\nnumber from the Main list" +
+        ", you can edit it by making\r\nthe changes you want in the \'Input\' text field, and" +
+        " then\r\nclicking this button.\r\n");
             this.BtnEdit.UseVisualStyleBackColor = true;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
@@ -137,6 +151,9 @@
             this.LbMain.Name = "LbMain";
             this.LbMain.Size = new System.Drawing.Size(100, 264);
             this.LbMain.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.LbMain, "This is the Main list, where Licence plate information\r\nwill primarily be stored." +
+        " You can select a Licence plate\r\nnumber to get more information about it and add" +
+        " it to\r\nthe \'Input\' text field.");
             this.LbMain.Click += new System.EventHandler(this.LbMainSelect_SelectedIndexChanged);
             // 
             // LbTagged
@@ -146,6 +163,7 @@
             this.LbTagged.Name = "LbTagged";
             this.LbTagged.Size = new System.Drawing.Size(100, 264);
             this.LbTagged.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.LbTagged, resources.GetString("LbTagged.ToolTip"));
             this.LbTagged.Click += new System.EventHandler(this.ShowSelectedTaggedValueInfo);
             this.LbTagged.DoubleClick += new System.EventHandler(this.TaggedRemove_DoubleClick);
             // 
@@ -156,6 +174,8 @@
             this.BtnDelete.Size = new System.Drawing.Size(60, 35);
             this.BtnDelete.TabIndex = 10;
             this.BtnDelete.Text = "Delete";
+            this.toolTip1.SetToolTip(this.BtnDelete, "This is the Delete button. It will allow you to delete\r\na selected Licence plate " +
+        "number from the Main list.");
             this.BtnDelete.UseVisualStyleBackColor = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
@@ -178,6 +198,8 @@
             this.TbFeedback.ReadOnly = true;
             this.TbFeedback.Size = new System.Drawing.Size(460, 20);
             this.TbFeedback.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.TbFeedback, "This is the Feedback text field. It displays various\r\ninformation based on what a" +
+        "ction the user is taking.");
             // 
             // LabelTagged
             // 
