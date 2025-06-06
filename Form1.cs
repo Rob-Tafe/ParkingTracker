@@ -306,6 +306,7 @@ namespace ParkingTracker
             if (!mainLinesGlobal.Contains(varTbInputAdd))
             {
                 mainLinesGlobal.Add(varTbInputAdd);
+                TbFeedback.Text = $"{varTbInputAdd} added to the Main list.";
                 TbInput.Clear();
                 LbMain.Focus();
                 DisplayLbMain();
@@ -605,6 +606,7 @@ namespace ParkingTracker
             else if (!(Regex.IsMatch(LbTagged.GetItemText(LbTagged.SelectedItem), @"^\d[A-Z]{3}-\d{3}$")))
             {
                 TbFeedback.Text = "No licence plate selected.";
+                TbInput.Clear();
                 LbTagged.ClearSelected();
                 DisplayLbMain();
                 return;
