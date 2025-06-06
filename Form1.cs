@@ -62,7 +62,6 @@ namespace ParkingTracker
             {
                 try
                 {
-                    ReadLbMain(openTxtFile.FileName);
                     nameOfSelectedTxtFile = openTxtFile.FileName;
                     TbFeedback.Text = $"File = {nameOfSelectedTxtFile}";
                 }
