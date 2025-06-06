@@ -190,6 +190,15 @@ namespace ParkingTracker
 
 
 
+        // SaveOnFormClose method. This method will prompt the user to save the data in the form
+        // when they try to close the form.
+        private void SaveOnFormClose(object sender, FormClosedEventArgs e)
+        {
+            BtnSave_Click(sender, e);
+        }
+
+
+
         // Unique file name method. This method is responsible for generating a unique name
         // for each new text file, and will be automatically inserted into the file name area
         // of the save file dialog.

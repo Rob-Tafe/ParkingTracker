@@ -264,6 +264,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParkingTracker";
             this.Text = "Licence Plate Management";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveOnFormClose);
             ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
