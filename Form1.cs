@@ -307,7 +307,6 @@ namespace ParkingTracker
             {
                 mainLinesGlobal.Add(varTbInputAdd);
                 TbInput.Clear();
-                TbFeedback.Clear();
                 LbMain.Focus();
                 DisplayLbMain();
             }
