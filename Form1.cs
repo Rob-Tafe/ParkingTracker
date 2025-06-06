@@ -70,6 +70,8 @@ namespace ParkingTracker
         {
             TbFeedback.Clear();
 
+            TbFeedback.Text = "Select a file to load Licence plate data from.";
+
             OpenFileDialog openTxtFile = new OpenFileDialog();
             openTxtFile.Title = "Open Text file";
             openTxtFile.Filter = "TXT files|*.txt";
