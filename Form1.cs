@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 // This allows us to use regex to ensure the correct format of the licence plates.
 using System.Text.RegularExpressions;
@@ -64,6 +65,9 @@ namespace ParkingTracker
                 {
                     nameOfSelectedTxtFile = openTxtFile.FileName;
                     TbFeedback.Text = $"File = {nameOfSelectedTxtFile}";
+
+                    ReadLbMain(openTxtFile.FileName);
+                    DisplayLbMain();
                 }
                 catch
                 {
@@ -80,14 +84,36 @@ namespace ParkingTracker
         // text file.
         private void ReadLbMain(string readFilePath)
         {
-            TbFeedback.Clear();
+            //TbFeedback.Clear();
 
             if (File.Exists(readFilePath))
             {
-                List<string> lines = File.ReadAllLines(readFilePath).ToList();
+                using (StreamReader readFile = new StreamReader(readFilePath))
+                {
+                    try
+                    {
+                        string line1 = File.ReadLines(readFilePath).Skip(0).Take(1).First();
+                        List<string> mainLines = line1.Split(':').ToList();
+                        mainLinesGlobal = mainLines;
+                    }
+                    catch
+                    {
+                        //TbFeedback.Text = $"Main list empty.";
+                        mainLinesGlobal = new List<string>();
+                    }
 
-                mainLinesGlobal = lines;
-
+                    try
+                    {
+                        string line2 = File.ReadLines(readFilePath).Skip(1).Take(1).First();
+                        List<string> taggedLines = line2.Split(':').ToList();
+                        taggedLinesGlobal = taggedLines;
+                    }
+                    catch
+                    {
+                        //TbFeedback.Text = $"Tagged list empty.";
+                        taggedLinesGlobal = new List<string>();
+                    }
+                }
                 DisplayLbMain();
             }
             else
@@ -146,8 +172,18 @@ namespace ParkingTracker
         {
             using (StreamWriter listWriter = new StreamWriter(writeFilePath))
             {
-                List<string> writeLines = mainLinesGlobal;
 
+                List<string> mainLines = mainLinesGlobal;
+                List<string> taggedLines = taggedLinesGlobal;
+
+                string mainLinesForWrite = string.Join(":", mainLines);
+                string taggedLinesForWrite = string.Join(":", taggedLines);
+
+                string combinedLinesForWrite = mainLinesForWrite + Environment.NewLine + taggedLinesForWrite;
+
+                listWriter.Write(combinedLinesForWrite);
+
+                TbFeedback.Text = $"{combinedLinesForWrite} saved as {writeFilePath}";
             }
 
         } // End of WriteLbMain method.
