@@ -434,7 +434,7 @@ namespace ParkingTracker
             {
                 if ((!linearFound) && (listIndexOfVal >= mainLinesGlobal.Count))
                 {
-                    TbFeedback.Text = "Licence plate not found in the Main list.";
+                    TbFeedback.Text = $"Licence plate {linearTarget} not found in the Main list.";
                     return;
                 }
                 else if (linearTarget == mainLinesGlobal[listIndexOfVal])
