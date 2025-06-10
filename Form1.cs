@@ -115,7 +115,6 @@ namespace ParkingTracker
                     }
                     catch
                     {
-                        //TbFeedback.Text = $"Main list empty.";
                         mainLinesGlobal = new List<string>();
                     }
 
@@ -127,7 +126,6 @@ namespace ParkingTracker
                     }
                     catch
                     {
-                        //TbFeedback.Text = $"Tagged list empty.";
                         taggedLinesGlobal = new List<string>();
                     }
                 }
