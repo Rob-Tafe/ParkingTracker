@@ -75,7 +75,6 @@ namespace ParkingTracker
             OpenFileDialog openTxtFile = new OpenFileDialog();
             openTxtFile.Title = "Open Text file";
             openTxtFile.Filter = "TXT files|*.txt";
-            openTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
 
             if (openTxtFile.ShowDialog() == DialogResult.OK)
             {
