@@ -153,17 +153,6 @@ namespace ParkingTracker
             saveTxtFile.Title = "Save Licence plate list";
             saveTxtFile.Filter = "TXT files|*.txt";
                 
-                // These are the various directories that can be used based on where the program
-                // is being used.
-                // Tafe directory
-                // saveTxtFile.InitialDirectory = @"C:\Users\P214430\source\repos\ParkingTracker\ParkingTracker Text Files";
-            
-                // Home directory
-                saveTxtFile.InitialDirectory = @"D:\Programs\Visual Studio Projects\ParkingTracker\ParkingTracker Text Files";
-
-                // Other directory
-                // saveTxtFile.InitialDirectory = @"YOUR DIRECTORY HERE";
-
             saveTxtFile.FileName = FileNameIterator(saveTxtFile.InitialDirectory);
 
             if ((saveTxtFile.ShowDialog() == DialogResult.OK))
