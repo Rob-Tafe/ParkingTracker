@@ -73,9 +73,14 @@ namespace ParkingTracker
             TbFeedback.Text = "Select a file to load Licence plate data from.";
 
             OpenFileDialog openTxtFile = new OpenFileDialog();
+
+            string relPath = @"ParkingTracker Text Files";
+            string fullPath = Path.GetFullPath(Path.Combine(Application.StartupPath, relPath));
+
+            openTxtFile.InitialDirectory = fullPath;
             openTxtFile.Title = "Open Text file";
             openTxtFile.Filter = "TXT files|*.txt";
-
+            
             if (openTxtFile.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -148,9 +153,14 @@ namespace ParkingTracker
             TbFeedback.Clear();
 
             SaveFileDialog saveTxtFile = new SaveFileDialog();
+
+            string relPath = @"ParkingTracker Text Files";
+            string fullPath = Path.GetFullPath(Path.Combine(Application.StartupPath, relPath));
+
+            saveTxtFile.InitialDirectory = fullPath;
             saveTxtFile.Title = "Save Licence plate list";
             saveTxtFile.Filter = "TXT files|*.txt";
-                
+
             saveTxtFile.FileName = FileNameIterator(saveTxtFile.InitialDirectory);
 
             if ((saveTxtFile.ShowDialog() == DialogResult.OK))
