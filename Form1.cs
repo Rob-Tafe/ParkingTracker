@@ -74,8 +74,13 @@ namespace ParkingTracker
 
             OpenFileDialog openTxtFile = new OpenFileDialog();
 
-            string relPath = @"ParkingTracker Text Files";
+            string relPath = @"ParkingTracker Text Files\";
             string fullPath = Path.GetFullPath(Path.Combine(Application.StartupPath, relPath));
+
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
 
             openTxtFile.InitialDirectory = fullPath;
             openTxtFile.Title = "Open Text file";
@@ -156,6 +161,11 @@ namespace ParkingTracker
 
             string relPath = @"ParkingTracker Text Files";
             string fullPath = Path.GetFullPath(Path.Combine(Application.StartupPath, relPath));
+
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
 
             saveTxtFile.InitialDirectory = fullPath;
             saveTxtFile.Title = "Save Licence plate list";
