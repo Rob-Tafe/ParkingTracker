@@ -632,7 +632,7 @@ namespace ParkingTracker
             TbFeedback.Text = "Reset of data lists initiated.";
 
             
-            if ((mainLinesGlobal.Count > 0) && (taggedLinesGlobal.Count > 0))
+            if ((mainLinesGlobal.Count > 0) || (taggedLinesGlobal.Count > 0))
             {
                 DialogResult resetConfirm = MessageBox.Show("Are you sure you wish to clear all data from the Main AND Tagged lists?",
                 "Reset Confirmation", MessageBoxButtons.YesNo);
