@@ -359,7 +359,6 @@ namespace ParkingTracker
 
                 int compareStrings = String.Compare(mainLinesGlobal[mid], target, StringComparison.OrdinalIgnoreCase);
 
-
                 if (compareStrings == 0)
                 {
                     // Target found
@@ -376,7 +375,6 @@ namespace ParkingTracker
                 {
                     lowBound = mid + 1;
                 }
-
             }
 
             TbFeedback.Text = "Licence plate not found.";
